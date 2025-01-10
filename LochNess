@@ -1,0 +1,100 @@
+# import libraries to aid in data calculation and visualisation
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+# Load data (sightings.csv)
+data = pd.read_csv('sightings.csv')
+
+# Use numpy to isolate the different columns into arrays
+datalabels_array = data['Month'].to_numpy()
+data2020_array = data['2020'].to_numpy()
+data2021_array = data['2021'].to_numpy()
+data2022_array = data['2022'].to_numpy()
+data2023_array = data['2023'].to_numpy()
+data2024_array = data['2024'].to_numpy()
+
+# Calculate the total sightings in the year 
+sum2020 = sum(data2020_array)
+sum2021 = sum(data2021_array)
+sum2022 = sum(data2022_array)
+sum2023 = sum(data2023_array)
+sum2024 = sum(data2024_array)
+
+#Create readable output
+if sum2020 > 1 and sum2021 > 1 and sum2022 > 1 and sum2023 > 1 and sum2024 > 1:
+    print("There were", sum2020, "sightings of the Lough Ness Monster in 2020.")
+    print("There were", sum2021, "sightings of the Lough Ness Monster in 2021.")
+    print("There were", sum2022, "sightings of the Lough Ness Monster in 2022.")
+    print("There were", sum2023, "sightings of the Lough Ness Monster in 2023.")
+    print("There were", sum2024, "sightings of the Lough Ness Monster in 2024.")
+
+# Use function to calculate the average sightings per year
+def calculate_averages(sum2020, sum2021, sum2022, sum2023, sum2024):
+    if sum2020 > 1 and sum2021 > 1 and sum2022 > 1 and sum2023 > 1 and sum2024 > 1:
+        return sum2020 / 12, sum2021 / 12, sum2022 / 12, sum2023 / 12, sum2024 / 12
+
+# Isolate the averages in variables using the function   
+averages = calculate_averages(sum2020, sum2021, sum2022, sum2023, sum2024)
+average_2020 = averages[0]  
+average_2021 = averages[1]  
+average_2022 = averages[2] 
+average_2023 = averages[3] 
+average_2024 = averages[4]   
+
+#Create readable output
+if average_2020 > 1 and average_2021 > 1 and average_2022 > 1 and average_2023 > 1 and average_2024 > 1:
+    print("The monthly average sightings in 2020 was", average_2020, ".")
+    print("The monthly average sightings in 2021 was", average_2021, ".")
+    print("The monthly average sightings in 2022 was", average_2022, ".")
+    print("The monthly average sightings in 2023 was", average_2023, ".")
+    print("The monthly average sightings in 2024 was", average_2024, ".")  
+
+#Sort averages in order to create top 3
+averages_list = [average_2020, average_2021, average_2022, average_2023, average_2024]
+sorted_averages = sorted(averages_list, reverse=True)
+top_3_averages = []
+
+#Use loop to create list of top 3 averages in timeframe
+i = 0
+while i < 3:
+    top_3_averages.append(float(averages_list[i]))
+    i += 1
+    
+print("The top three average monthly sightings were", top_3_averages, ".")
+
+# Use matplotlib to make charts of the different years
+time2020 = datalabels_array
+sightings2020 = data2020_array
+plt.bar(time2020, sightings2020)
+plt.xlabel("time2020 [month]")
+plt.ylabel("sightings2020 [occurances]")
+plt.show()
+
+time2021 = datalabels_array
+sightings2021 = data2021_array
+plt.bar(time2021, sightings2021)
+plt.xlabel("time2021 [month]")
+plt.ylabel("sightings2021 [occurances]")
+plt.show()
+
+time2022 = datalabels_array
+sightings2022 = data2022_array
+plt.bar(time2022, sightings2022)
+plt.xlabel("time2022 [month]")
+plt.ylabel("sightings2022 [occurances]")
+plt.show()
+    
+time2023 = datalabels_array
+sightings2023 = data2023_array
+plt.bar(time2023, sightings2023)
+plt.xlabel("time2023 [month]")
+plt.ylabel("sightings2023 [occurances]")
+plt.show()
+
+time2024 = datalabels_array
+sightings2024 = data2024_array
+plt.bar(time2024, sightings2024)
+plt.xlabel("time2024 [month]")
+plt.ylabel("sightings2024 [occurances]")
+plt.show()   
